@@ -1,0 +1,506 @@
+:root {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #d5deeb;
+  background: #0a1020;
+  font-size: 12px;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select,
+.button {
+  font: inherit;
+}
+button,
+.button {
+  border: 1px solid #314059;
+  background: #182237;
+  color: #d5deeb;
+  border-radius: 5px;
+  padding: 8px 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+}
+button:hover,
+.button:hover {
+  background: #25374e;
+  border-color: #4d718c;
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+input,
+select {
+  border: 1px solid #314059;
+  border-radius: 4px;
+  background: #0e1728;
+  color: #d5deeb;
+  padding: 8px;
+  min-width: 0;
+}
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 2px solid #48ddbf;
+  outline-offset: 2px;
+}
+.app {
+  height: 100vh;
+  min-width: 950px;
+  display: flex;
+  flex-direction: column;
+}
+.grow {
+  flex: 1;
+}
+header {
+  height: 72px;
+  padding: 0 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid #293449;
+  background: #0f1728;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 25px;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+.brand b {
+  color: #47dec1;
+  font-size: 32px;
+}
+.brand small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #8294ad;
+  margin-top: 4px;
+}
+.save {
+  font-size: 11px;
+  color: #8b9bb2;
+}
+.connection {
+  color: #6edbc4;
+  font-size: 11px;
+}
+header select {
+  max-width: 260px;
+}
+.toolbar {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-bottom: 1px solid #293449;
+}
+.toolbar > span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #8496ae;
+  margin-right: 12px;
+}
+.primary {
+  background: #35c5a7;
+  color: #071812;
+  border-color: #47dec1;
+  font-weight: 700;
+}
+.primary:hover {
+  background: #60e2c4;
+}
+main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.palette {
+  width: 178px;
+  flex-shrink: 0;
+  border-right: 1px solid #293449;
+  padding: 19px 14px;
+  background: #101829;
+  overflow: auto;
+}
+h3 {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #8299b6;
+  margin: 0 0 16px;
+}
+.palette input {
+  width: 100%;
+}
+.palette p,
+.inspector p {
+  color: #8394ad;
+  line-height: 1.6;
+  font-size: 11px;
+}
+.palette-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+}
+.palette-list button {
+  text-align: left;
+  background: #141f32;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+.palette-list button span {
+  margin-right: 14px;
+  color: #5fbea8;
+}
+.model-note {
+  margin-top: 24px;
+  padding: 12px 0;
+  border-top: 1px solid #2c3850;
+  color: #8da4be;
+  font-size: 10px;
+}
+.workspace {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: #0c1323;
+}
+.canvas {
+  flex: 1;
+  position: relative;
+  min-height: 180px;
+}
+.canvas-label {
+  position: absolute;
+  left: 20px;
+  top: 17px;
+  pointer-events: none;
+  color: #aebbd0;
+  font-size: 12px;
+  background: #0c1323cc;
+  padding: 8px;
+  border-radius: 5px;
+}
+.canvas-label small {
+  display: block;
+  color: #687f9f;
+  font-size: 10px;
+  margin-top: 4px;
+}
+.gate {
+  width: 144px;
+  min-height: 82px;
+  border: 1px solid #3e526c;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: #19263b;
+  box-shadow: 0 4px 15px #0003;
+}
+.gate.selected {
+  border-color: #47dec1;
+  box-shadow: 0 0 0 2px #47dec133;
+}
+.gate-kind {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #8fa7c4;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+}
+.gate strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.gate-value {
+  font-family: monospace;
+  color: #65dfc3;
+  margin-top: 7px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.gate-value small {
+  color: #7e94ac;
+  font-size: 10px;
+}
+.gate.input {
+  background: #17302f;
+  border-color: #39776b;
+}
+.gate.output {
+  background: #242443;
+  border-color: #5a5888;
+}
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background: #6d89a7;
+  border: 1px solid #172035;
+}
+.port-label {
+  position: absolute;
+  right: 10px;
+  font-size: 8px;
+  color: #6b819f;
+}
+.react-flow__controls button {
+  background: #1d2a40;
+  fill: #b6c7db;
+  border-color: #34435b;
+}
+.react-flow__minimap {
+  background: #101a2b;
+}
+.waves {
+  height: 230px;
+  min-height: 130px;
+  max-height: 50vh;
+  resize: vertical;
+  overflow: auto;
+  border-top: 1px solid #324056;
+  background: #10192a;
+  padding: 13px 18px;
+}
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.panel-title h3 {
+  margin: 0;
+  color: #c0d0e4;
+}
+.panel-title > span {
+  font-size: 10px;
+  color: #7d93ae;
+}
+.panel-title button {
+  padding: 4px 8px;
+}
+.panel-title select {
+  padding: 4px;
+}
+.wave-scroll {
+  overflow: auto;
+  max-height: 130px;
+}
+.wave-row {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  border-bottom: 1px solid #243149;
+}
+.wave-row > span {
+  width: 125px;
+  flex-shrink: 0;
+  font-family: monospace;
+  font-size: 10px;
+}
+.wave-row b {
+  float: right;
+  margin-right: 10px;
+  color: #52cfb4;
+}
+.wave-row svg {
+  flex: 1;
+  min-width: 150px;
+  height: 36px;
+  border-left: 1px solid #34465d;
+}
+.waves > input {
+  width: 100%;
+  height: 18px;
+  margin: 8px 0;
+  accent-color: #47dec1;
+}
+.empty {
+  text-align: center;
+  color: #637c9a;
+  font-size: 11px;
+}
+.inspector {
+  width: 252px;
+  flex-shrink: 0;
+  overflow: auto;
+  border-left: 1px solid #293449;
+  padding: 20px 16px;
+  background: #101829;
+}
+.inspector label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 10px;
+  color: #8da4be;
+  margin-bottom: 12px;
+}
+.inspector input,
+.inspector select {
+  width: 100%;
+}
+.inspector h2 {
+  font-size: 17px;
+  font-weight: 500;
+}
+.inspector h3:not(:first-child) {
+  margin-top: 24px;
+  border-top: 1px solid #293449;
+  padding-top: 20px;
+}
+.inspector > button,
+.inspector > .button,
+.inspector > select {
+  width: 100%;
+  margin: 4px 0;
+  text-align: left;
+  font-size: 11px;
+}
+.readout {
+  padding: 14px;
+  background: #0b1424;
+  border: 1px solid #263b50;
+  font-size: 28px;
+  color: #65dfc3;
+  margin-bottom: 12px;
+  border-radius: 6px;
+}
+.readout small {
+  display: block;
+  font-size: 9px;
+  color: #7d95ae;
+  margin-top: 5px;
+}
+.input-switch {
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+}
+.input-switch input {
+  width: 80px;
+}
+.valid {
+  color: #65cfb5 !important;
+}
+.error {
+  color: #f19990 !important;
+}
+pre {
+  font-size: 10px;
+  white-space: pre-wrap;
+  max-height: 270px;
+  overflow: auto;
+  line-height: 1.5;
+  background: #0b1424;
+  padding: 10px;
+  border: 1px solid #2a3c55;
+}
+footer {
+  height: 32px;
+  border-top: 1px solid #293449;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  background: #111b2b;
+  font-size: 10px;
+  color: #8fa5c0;
+}
+footer > span:first-child {
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+footer button {
+  padding: 3px 8px;
+  font-size: 9px;
+}
+footer > span:last-child {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.remote-cursor {
+  position: absolute;
+  pointer-events: none;
+  color: #c2a5ff;
+  font-size: 23px;
+  z-index: 5;
+  white-space: nowrap;
+}
+.remote-cursor span {
+  font-size: 9px;
+  background: #382c52;
+  border: 1px solid #756093;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+.comparison table {
+  width: 100%;
+  font-size: 11px;
+  border-collapse: collapse;
+}
+.comparison td,
+.comparison th {
+  padding: 7px;
+  border: 1px solid #33435b;
+  text-align: left;
+}
+.replay-tools {
+  display: flex;
+  gap: 5px;
+  margin: 5px 0;
+}
+.replay-tools button,
+.replay-tools .button {
+  font-size: 10px;
+  padding: 4px 8px;
+}
+.waves {
+  height: 270px;
+}
+.pan-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  color: #839ab6;
+  margin-top: 5px;
+}
+.pan-control input {
+  height: 12px;
+  flex: 1;
+  accent-color: #47dec1;
+}
+.react-flow__edge-text {
+  fill: #d1e1f0;
+}
+.react-flow__edge-textbg {
+  fill: #243b4b;
+}
+.inspector .button {
+  color: #d5deeb;
+  font-size: 11px;
+  cursor: pointer;
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 1366,
+    "height": 900
+  },
+  "checks": [
+    "input switches and counterexample assignment with differing outputs",
+    "eight counter edges and waveform output",
+    "real JSON testbench through worker",
+    "manual edge continues from the testbench final state",
+    "replay export contains only the current run events",
+    "replay import reproduces state and subsequent clock behavior",
+    "two browser contexts share a structural edit, undo and redo",
+    "saved project reopened from server",
+    "two UI clients concurrently edit different components and converge",
+    "two UI clients conflicting edit retains an explicit draft",
+    "created and connected INPUT → NOT → OUTPUT on canvas",
+    "keyboard multiselection, copy/paste and delete preserve internal wires",
+    "JSON download and import"
+  ],
+  "pageErrors": []
+}

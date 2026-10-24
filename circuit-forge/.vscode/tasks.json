@@ -1,0 +1,1 @@
+{"version":"2.0.0","tasks":[{"label":"CircuitForge: develop","type":"shell","command":"npm run dev","problemMatcher":[]},{"label":"CircuitForge: check","type":"shell","command":"npm run lint && npm run typecheck && npm test && npm run build","group":{"kind":"build","isDefault":true},"problemMatcher":"$tsc"}]}

@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "node": "v24.18.0",
+  "steps": [
+    {
+      "command": "npm run lint",
+      "passed": true,
+      "seconds": 0.648499792
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "seconds": 1.003191042
+    },
+    {
+      "command": "npm run test",
+      "passed": true,
+      "seconds": 0.614894583
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "seconds": 1.9377598330000005
+    },
+    {
+      "command": "npm run examples",
+      "passed": true,
+      "seconds": 0.19447629200000027
+    },
+    {
+      "command": "node --import tsx scripts/protocol-check.ts",
+      "passed": true,
+      "seconds": 0.4623803330000001
+    },
+    {
+      "command": "node --import tsx scripts/benchmark.ts",
+      "passed": true,
+      "seconds": 7.249917875
+    },
+    {
+      "command": "node --import tsx scripts/export-check.ts",
+      "passed": true,
+      "seconds": 0.3572072909999988
+    },
+    {
+      "command": "node --import tsx scripts/browser-check.ts",
+      "passed": true,
+      "seconds": 9.455510542
+    }
+  ]
+}

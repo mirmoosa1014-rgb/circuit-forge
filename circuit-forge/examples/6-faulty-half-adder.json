@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "name": "Faulty half adder",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "INPUT",
+      "label": "A",
+      "width": 1,
+      "value": 0,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "n1",
+      "kind": "INPUT",
+      "label": "B",
+      "width": 1,
+      "value": 0,
+      "x": 0,
+      "y": 140
+    },
+    {
+      "id": "n2",
+      "kind": "OR",
+      "label": "OR",
+      "width": 1,
+      "value": 0,
+      "x": 200,
+      "y": 0
+    },
+    {
+      "id": "n3",
+      "kind": "OUTPUT",
+      "label": "SUM",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 0
+    },
+    {
+      "id": "n4",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 200,
+      "y": 140
+    },
+    {
+      "id": "n5",
+      "kind": "OUTPUT",
+      "label": "CARRY",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 140
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "from": "n0",
+      "to": "n2",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w1",
+      "from": "n1",
+      "to": "n2",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w2",
+      "from": "n2",
+      "to": "n3",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w3",
+      "from": "n0",
+      "to": "n4",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w4",
+      "from": "n1",
+      "to": "n4",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w5",
+      "from": "n4",
+      "to": "n5",
+      "input": "a",
+      "port": "out"
+    }
+  ]
+}

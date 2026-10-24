@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "freshStorage": true,
+  "checks": [
+    {
+      "command": "npm ci --cache /private/tmp/circuitforge-npm-cache --fetch-retries=0 --fetch-timeout=20000",
+      "passed": true,
+      "seconds": 2.264
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "seconds": 1.186
+    },
+    {
+      "command": "npm test",
+      "passed": true,
+      "seconds": 1.119
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "seconds": 2.225
+    }
+  ]
+}

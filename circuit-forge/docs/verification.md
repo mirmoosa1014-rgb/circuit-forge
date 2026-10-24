@@ -1,0 +1,17 @@
+# Verification and optimization
+
+Exhaustive enumeration counts independent input **bits**, not nodes. The maximum is 12 bits / 4,096 assignments. Sequential circuits are rejected. Equivalent external inputs and outputs must have unique matching names and widths. Every enumerated assignment is evaluated through both compiled circuits; the first mismatch includes both input mappings, the signal, and the two values. This is a complete check over the supported finite combinational domain, not a sequential or SAT proof.
+
+The UI loads the counterexample into the current circuit, selects its differing output, and displays the compared circuit's matching assignment and differing output value. Both results come from actual engine evaluation. The faulty half adder changes XOR to OR: A=B=1 gives SUM=0 in the correct circuit and SUM=1 in the faulty circuit.
+
+Optimization flattens hierarchy, rejects registers, and runs a bounded pipeline: evaluate operations whose inputs are all constants, eliminate supported safe identities, merge structurally identical operations, and remove logic unreachable from named outputs/probes. External input/output nodes are retained. Changes are listed with the original or namespaced component labels. Structural hashing includes operation type, width, exact port assignment, source node, and source port. It conservatively misses some commutative matches; it never assumes expressions equal merely because they look similar.
+
+Identity rules preserve width and masking. The pipeline does not mutate the original project. It records before/after primitive, wire, and gate-depth counts, and uses exhaustive equivalence before the UI offers to save the optimized copy. Above the 12-bit limit, verification is declined; no random proof badge is shown. Register optimization and sequential equivalence are outside this implementation.
+
+The independent recursive reference evaluator has a separate traversal and primitive dispatch. Tests compare it with compiled evaluation on fixed-seed generated DAGs. Arithmetic serves only as the test oracle for editable adder/ALU netlists. ALU OP=0 selects ADD; 1 AND; 2 OR; 3 XOR. RESULT is masked to four bits; ZERO tests the selected result. CARRY consistently reports the adder's carry-out, including while a logical operation is selected.
+
+Verilog export supports all built-in binary primitives, flattened hierarchy, constants, and one rising-edge clock with synchronous reset and optional enable. It creates deterministic `n0`, `n1`, … identifiers and comments mapping them to component IDs. It emits declarations before expressions and uses explicit vector ranges even for single-bit internal buses. Initial register values are emitted for simulator parity; device-specific synthesis support is not promised.
+
+The generated HDL testbench drives inputs and checks outputs after settling/edges against the TypeScript model. The independent [Icarus Verilog](https://steveicarus.github.io/iverilog/) compiler/runtime checks exported semantics. `results/verilog.json` records actual status. Passing the deliberately faulty adder's export check means faithful export of its faulty behavior, not correctness against the intended half-adder specification. Uploaded Verilog is never imported or executed.
+
+Counts and logical depth are structural proxies. No physical area, power, GHz, or nanosecond improvement is inferred. Synthesis-quality technology mapping and physical timing analysis remain outside scope.

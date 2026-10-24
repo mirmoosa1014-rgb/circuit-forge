@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "version": "Icarus Verilog version 13.0 (stable) (v13_0)",
+  "checks": [
+    {
+      "name": "Half adder",
+      "output": "PASS 4 vectors/edges"
+    },
+    {
+      "name": "Full adder",
+      "output": "PASS 8 vectors/edges"
+    },
+    {
+      "name": "Hierarchical 4-bit ripple-carry adder",
+      "output": "PASS 512 vectors/edges"
+    },
+    {
+      "name": "4-bit ALU",
+      "output": "PASS 1024 vectors/edges"
+    },
+    {
+      "name": "8-bit synchronous counter",
+      "output": "PASS 32 vectors/edges"
+    },
+    {
+      "name": "Optimization lab",
+      "output": "PASS 256 vectors/edges"
+    },
+    {
+      "name": "Faulty half adder",
+      "output": "PASS 4 vectors/edges"
+    },
+    {
+      "name": "Traffic-light FSM",
+      "output": "PASS 32 vectors/edges"
+    }
+  ]
+}

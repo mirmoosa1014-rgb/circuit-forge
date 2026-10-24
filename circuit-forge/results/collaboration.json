@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "checks": [
+    "two genuine WebSocket clients",
+    "concurrent nonconflicting edits",
+    "same-object conflict",
+    "duplicate operation retry",
+    "malformed operation rejected",
+    "reconnect snapshot",
+    "SQLite server restart recovery",
+    "unexpected origin rejected"
+  ],
+  "latency": {
+    "condition": "localhost, Node WebSocket clients, SQLite WAL commit + accepted operation round-trip; 12 sequential edits, 2 connected clients, 1 active sender for latency",
+    "samples_ms": [
+      0.3064579999999637,
+      0.22062500000004093,
+      0.2552909999999997,
+      0.24083300000000918,
+      0.2957499999999982,
+      0.20545800000002146,
+      0.1778749999999718,
+      0.19016599999997652,
+      0.17733399999997346,
+      0.236582999999996,
+      0.18204200000002402,
+      0.1845000000000141
+    ],
+    "median_ms": 0.22062500000004093,
+    "p95_ms": 0.3064579999999637
+  }
+}

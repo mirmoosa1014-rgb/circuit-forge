@@ -1,0 +1,658 @@
+{
+  "version": 1,
+  "name": "8-bit synchronous counter",
+  "nodes": [
+    {
+      "id": "n0",
+      "kind": "INPUT",
+      "label": "RESET",
+      "width": 1,
+      "value": 0,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "n1",
+      "kind": "INPUT",
+      "label": "ENABLE",
+      "width": 1,
+      "value": 1,
+      "x": 0,
+      "y": 140
+    },
+    {
+      "id": "n2",
+      "kind": "REG",
+      "label": "COUNT",
+      "width": 8,
+      "value": 0,
+      "x": 0,
+      "y": 280
+    },
+    {
+      "id": "n3",
+      "kind": "SPLIT",
+      "label": "SPLIT",
+      "width": 8,
+      "value": 0,
+      "x": 200,
+      "y": 0
+    },
+    {
+      "id": "n4",
+      "kind": "JOIN",
+      "label": "Next count",
+      "width": 8,
+      "value": 0,
+      "x": 2200,
+      "y": 0
+    },
+    {
+      "id": "n5",
+      "kind": "CONST",
+      "label": "One",
+      "width": 1,
+      "value": 1,
+      "x": 0,
+      "y": 420
+    },
+    {
+      "id": "n6",
+      "kind": "PROBE",
+      "label": "Bit 0",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 0
+    },
+    {
+      "id": "n7",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 600,
+      "y": 0
+    },
+    {
+      "id": "n8",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 600,
+      "y": 140
+    },
+    {
+      "id": "n9",
+      "kind": "PROBE",
+      "label": "Bit 1",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 140
+    },
+    {
+      "id": "n10",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 800,
+      "y": 0
+    },
+    {
+      "id": "n11",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 800,
+      "y": 140
+    },
+    {
+      "id": "n12",
+      "kind": "PROBE",
+      "label": "Bit 2",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 280
+    },
+    {
+      "id": "n13",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 1000,
+      "y": 0
+    },
+    {
+      "id": "n14",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 1000,
+      "y": 140
+    },
+    {
+      "id": "n15",
+      "kind": "PROBE",
+      "label": "Bit 3",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 420
+    },
+    {
+      "id": "n16",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 1200,
+      "y": 0
+    },
+    {
+      "id": "n17",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 1200,
+      "y": 140
+    },
+    {
+      "id": "n18",
+      "kind": "PROBE",
+      "label": "Bit 4",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 560
+    },
+    {
+      "id": "n19",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 1400,
+      "y": 0
+    },
+    {
+      "id": "n20",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 1400,
+      "y": 140
+    },
+    {
+      "id": "n21",
+      "kind": "PROBE",
+      "label": "Bit 5",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 700
+    },
+    {
+      "id": "n22",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 1600,
+      "y": 0
+    },
+    {
+      "id": "n23",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 1600,
+      "y": 140
+    },
+    {
+      "id": "n24",
+      "kind": "PROBE",
+      "label": "Bit 6",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 840
+    },
+    {
+      "id": "n25",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 1800,
+      "y": 0
+    },
+    {
+      "id": "n26",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 1800,
+      "y": 140
+    },
+    {
+      "id": "n27",
+      "kind": "PROBE",
+      "label": "Bit 7",
+      "width": 1,
+      "value": 0,
+      "x": 400,
+      "y": 980
+    },
+    {
+      "id": "n28",
+      "kind": "XOR",
+      "label": "XOR",
+      "width": 1,
+      "value": 0,
+      "x": 2000,
+      "y": 0
+    },
+    {
+      "id": "n29",
+      "kind": "AND",
+      "label": "AND",
+      "width": 1,
+      "value": 0,
+      "x": 2000,
+      "y": 140
+    },
+    {
+      "id": "n30",
+      "kind": "OUTPUT",
+      "label": "COUNT_OUT",
+      "width": 8,
+      "value": 0,
+      "x": 200,
+      "y": 140
+    }
+  ],
+  "wires": [
+    {
+      "id": "w0",
+      "from": "n2",
+      "to": "n3",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w1",
+      "from": "n3",
+      "to": "n6",
+      "input": "a",
+      "port": "b0"
+    },
+    {
+      "id": "w2",
+      "from": "n6",
+      "to": "n7",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w3",
+      "from": "n5",
+      "to": "n7",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w4",
+      "from": "n7",
+      "to": "n4",
+      "input": "b0",
+      "port": "out"
+    },
+    {
+      "id": "w5",
+      "from": "n6",
+      "to": "n8",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w6",
+      "from": "n5",
+      "to": "n8",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w7",
+      "from": "n3",
+      "to": "n9",
+      "input": "a",
+      "port": "b1"
+    },
+    {
+      "id": "w8",
+      "from": "n9",
+      "to": "n10",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w9",
+      "from": "n8",
+      "to": "n10",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w10",
+      "from": "n10",
+      "to": "n4",
+      "input": "b1",
+      "port": "out"
+    },
+    {
+      "id": "w11",
+      "from": "n9",
+      "to": "n11",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w12",
+      "from": "n8",
+      "to": "n11",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w13",
+      "from": "n3",
+      "to": "n12",
+      "input": "a",
+      "port": "b2"
+    },
+    {
+      "id": "w14",
+      "from": "n12",
+      "to": "n13",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w15",
+      "from": "n11",
+      "to": "n13",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w16",
+      "from": "n13",
+      "to": "n4",
+      "input": "b2",
+      "port": "out"
+    },
+    {
+      "id": "w17",
+      "from": "n12",
+      "to": "n14",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w18",
+      "from": "n11",
+      "to": "n14",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w19",
+      "from": "n3",
+      "to": "n15",
+      "input": "a",
+      "port": "b3"
+    },
+    {
+      "id": "w20",
+      "from": "n15",
+      "to": "n16",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w21",
+      "from": "n14",
+      "to": "n16",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w22",
+      "from": "n16",
+      "to": "n4",
+      "input": "b3",
+      "port": "out"
+    },
+    {
+      "id": "w23",
+      "from": "n15",
+      "to": "n17",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w24",
+      "from": "n14",
+      "to": "n17",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w25",
+      "from": "n3",
+      "to": "n18",
+      "input": "a",
+      "port": "b4"
+    },
+    {
+      "id": "w26",
+      "from": "n18",
+      "to": "n19",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w27",
+      "from": "n17",
+      "to": "n19",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w28",
+      "from": "n19",
+      "to": "n4",
+      "input": "b4",
+      "port": "out"
+    },
+    {
+      "id": "w29",
+      "from": "n18",
+      "to": "n20",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w30",
+      "from": "n17",
+      "to": "n20",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w31",
+      "from": "n3",
+      "to": "n21",
+      "input": "a",
+      "port": "b5"
+    },
+    {
+      "id": "w32",
+      "from": "n21",
+      "to": "n22",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w33",
+      "from": "n20",
+      "to": "n22",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w34",
+      "from": "n22",
+      "to": "n4",
+      "input": "b5",
+      "port": "out"
+    },
+    {
+      "id": "w35",
+      "from": "n21",
+      "to": "n23",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w36",
+      "from": "n20",
+      "to": "n23",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w37",
+      "from": "n3",
+      "to": "n24",
+      "input": "a",
+      "port": "b6"
+    },
+    {
+      "id": "w38",
+      "from": "n24",
+      "to": "n25",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w39",
+      "from": "n23",
+      "to": "n25",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w40",
+      "from": "n25",
+      "to": "n4",
+      "input": "b6",
+      "port": "out"
+    },
+    {
+      "id": "w41",
+      "from": "n24",
+      "to": "n26",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w42",
+      "from": "n23",
+      "to": "n26",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w43",
+      "from": "n3",
+      "to": "n27",
+      "input": "a",
+      "port": "b7"
+    },
+    {
+      "id": "w44",
+      "from": "n27",
+      "to": "n28",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w45",
+      "from": "n26",
+      "to": "n28",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w46",
+      "from": "n28",
+      "to": "n4",
+      "input": "b7",
+      "port": "out"
+    },
+    {
+      "id": "w47",
+      "from": "n27",
+      "to": "n29",
+      "input": "a",
+      "port": "out"
+    },
+    {
+      "id": "w48",
+      "from": "n26",
+      "to": "n29",
+      "input": "b",
+      "port": "out"
+    },
+    {
+      "id": "w49",
+      "from": "n4",
+      "to": "n2",
+      "input": "d",
+      "port": "out"
+    },
+    {
+      "id": "w50",
+      "from": "n0",
+      "to": "n2",
+      "input": "reset",
+      "port": "out"
+    },
+    {
+      "id": "w51",
+      "from": "n1",
+      "to": "n2",
+      "input": "enable",
+      "port": "out"
+    },
+    {
+      "id": "w52",
+      "from": "n2",
+      "to": "n30",
+      "input": "a",
+      "port": "out"
+    }
+  ]
+}
