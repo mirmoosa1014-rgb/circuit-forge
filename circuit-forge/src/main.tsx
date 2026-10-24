@@ -123,6 +123,10 @@ function App() {
     [history, setHistory] = useState<Circuit[]>([]),
     [redo, setRedo] = useState<Circuit[]>([]),
     [conflict, setConflict] = useState(false);
+  // React Flow fitView requires measurements to survive controlled node renders.
+  const [nodeMeasurements, setNodeMeasurements] = useState<
+    Record<string, { width: number; height: number }>
+  >({});
   const [remotePresence, setRemotePresence] = useState<
     Record<string, { x: number; y: number; selection: string | null }>
   >({});
@@ -193,9 +197,11 @@ function App() {
       );
       sock.current = ws;
       ws.onopen = () => {
+        if (disposed) return;
         ws.send(JSON.stringify({ type: "join", project }));
       };
       ws.onmessage = (e) => {
+        if (disposed) return;
         const m = JSON.parse(e.data);
         if (m.type === "session") {
           session.current = m.session;
@@ -241,6 +247,7 @@ function App() {
         }
       };
       ws.onclose = () => {
+        if (disposed) return;
         setConnected(false);
         setRunning(false);
         if (latest.current.pending) {
@@ -405,6 +412,7 @@ function App() {
       if (!r.ok) throw Error("Project creation rejected");
       const p = await r.json();
       setConflict(false);
+      setConnected(false);
       setProject(p.id);
       refresh();
     } catch (e) {
@@ -517,11 +525,12 @@ function App() {
             Object.keys(outputs(n, c)).length,
           ) * 15,
         ),
+        measured: nodeMeasurements[n.id],
         position: { x: n.x, y: n.y },
         data: { part: n, value: values[n.id], circuit: c },
         selected: selected.includes(n.id),
       })),
-    [c, values, selected],
+    [c, values, selected, nodeMeasurements],
   );
   const edges = useMemo<Edge[]>(
     () =>
@@ -787,6 +796,30 @@ function App() {
               multiSelectionKeyCode={["Shift", "Control", "Meta"]}
               onSelectionChange={onSelectionChange}
               onNodesChange={(changes) => {
+                const dimensions = changes.filter(
+                  (change) => change.type === "dimensions",
+                );
+                if (dimensions.length)
+                  setNodeMeasurements((previous) => {
+                    let next = previous;
+                    for (const change of dimensions) {
+                      const size = change.dimensions;
+                      if (!size) continue;
+                      const old = previous[change.id];
+                      if (
+                        !old ||
+                        old.width !== size.width ||
+                        old.height !== size.height
+                      ) {
+                        if (next === previous) next = { ...previous };
+                        next[change.id] = {
+                          width: size.width,
+                          height: size.height,
+                        };
+                      }
+                    }
+                    return next;
+                  });
                 const selections = changes.filter((ch) => ch.type === "select");
                 if (selections.length)
                   setSelected((prev) => {

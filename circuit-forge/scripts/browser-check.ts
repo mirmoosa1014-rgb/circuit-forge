@@ -164,8 +164,9 @@ try {
     });
   }
   async function rename(p: typeof page, index: number, label: string) {
-    await p.waitForTimeout(350);
-    await p.locator(".react-flow__node").nth(index).locator("strong").click();
+    const node = p.locator(".react-flow__node").nth(index);
+    await expect(node).toBeInViewport({ ratio: 0.9 });
+    await node.locator("strong").click();
     await p.getByLabel("Label", { exact: true }).fill(label);
     await p
       .getByLabel("Label", { exact: true })
