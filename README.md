@@ -1,5 +1,7 @@
 # CircuitForge
 
+[![CircuitForge checks](https://github.com/mirmoosa1014-rgb/circuit-forge/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mirmoosa1014-rgb/circuit-forge/actions/workflows/ci.yml)
+
 The application lives in [circuit-forge](circuit-forge/README.md). Open that folder in VS Code.
 
 ```sh

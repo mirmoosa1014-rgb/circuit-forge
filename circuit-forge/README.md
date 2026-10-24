@@ -1,5 +1,7 @@
 # CircuitForge
 
+[![CircuitForge checks](https://github.com/mirmoosa1014-rgb/circuit-forge/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mirmoosa1014-rgb/circuit-forge/actions/workflows/ci.yml)
+
 A local digital-logic workbench for drawing circuits, clocking registers, inspecting waveforms, finding counterexamples, and editing a shared project in two browser windows. React canvas, TypeScript engine, browser worker, local WebSocket server, and SQLite storage. No external service is needed after installation.
 
 ![Actual CircuitForge editor with half-adder waveforms](docs/images/editor.png)
