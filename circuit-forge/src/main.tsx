@@ -102,6 +102,7 @@ function App() {
     [pending, setPending] = useState(false),
     [peers, setPeers] = useState<string[]>([]),
     [selected, setSelected] = useState<string[]>([]),
+    [selectedWires, setSelectedWires] = useState<string[]>([]),
     [inputs, setInputs] = useState<Values>({}),
     [values, setValues] = useState<Values>({}),
     [state, setState] = useState<Values>({}),
@@ -270,6 +271,7 @@ function App() {
   useEffect(() => {
     if (!connected) return;
     setSelected([]);
+    setSelectedWires([]);
     const t = setTimeout(() => flow.fitView({ padding: 0.18 }), 150);
     return () => clearTimeout(t);
   }, [project, connected]);
@@ -541,15 +543,29 @@ function App() {
         sourceHandle: w.port,
         targetHandle: w.input,
         animated: false,
+        selected: selectedWires.includes(w.id),
         style: {
-          stroke: values[w.from] ? "#47dec1" : "#526078",
+          stroke: (
+            w.port === "out"
+              ? values[w.from]
+              : (values[w.from] >>> Number(w.port.slice(1))) & 1
+          )
+            ? "#47dec1"
+            : "#526078",
           strokeWidth: 2,
         },
-        label: selected.includes(w.from)
-          ? String(values[w.from] ?? "")
-          : undefined,
+        label:
+          selected.includes(w.from) || selectedWires.includes(w.id)
+            ? String(
+                values[w.from] === undefined
+                  ? ""
+                  : w.port === "out"
+                    ? values[w.from]
+                    : (values[w.from] >>> Number(w.port.slice(1))) & 1,
+              )
+            : undefined,
       })),
-    [c, values, selected],
+    [c, values, selected, selectedWires],
   );
   const onSelectionChange = useCallback(
     ({ nodes }: { nodes: Node[] }) =>
@@ -873,6 +889,20 @@ function App() {
                   ],
                 })
               }
+              onEdgesChange={(changes) => {
+                const updates = changes.filter(
+                  (change) => change.type === "select",
+                );
+                if (updates.length)
+                  setSelectedWires((previous) => {
+                    const ids = new Set(previous);
+                    for (const change of updates) {
+                      if (change.selected) ids.add(change.id);
+                      else ids.delete(change.id);
+                    }
+                    return [...ids];
+                  });
+              }}
               deleteKeyCode={["Backspace", "Delete"]}
               onDelete={({ nodes: removed, edges: removedEdges }) =>
                 edit({

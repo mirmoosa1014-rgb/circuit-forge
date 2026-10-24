@@ -226,28 +226,52 @@ try {
   }
   await page.locator(".react-flow__controls-fitview").click();
   const ns = page.locator(".react-flow__node");
+  await expect(ns).toHaveCount(3);
+  const canvas = await page.locator(".canvas").boundingBox();
+  if (!canvas) throw Error("Missing canvas");
   for (let i = 0; i < 3; i++) {
-    const node = ns.nth(i),
-      box = await node.boundingBox();
-    if (!box) throw Error("Missing node");
-    await node.locator("strong").hover();
-    await page.mouse.down();
-    await page.mouse.move(
-      box.x + box.width / 2 + (i - 1) * 230,
-      box.y + 20 + (i - 1) * 90,
-      { steps: 15 },
+    const node = ns.nth(i);
+    await expect(node).toBeInViewport({ ratio: 0.9 });
+    const box = await node.boundingBox(),
+      grab = await node.locator("strong").boundingBox();
+    if (!box || !grab) throw Error("Missing node bounds");
+    const before = Number(
+      (await page.locator(".save").innerText()).match(/r(\d+)/)?.[1] || 0,
     );
+    const targetX = canvas.x + 40 + (i * (canvas.width - box.width - 80)) / 2,
+      targetY = canvas.y + canvas.height * 0.45 - box.height / 2;
+    const startX = grab.x + grab.width / 2,
+      startY = grab.y + grab.height / 2;
+    await page.mouse.move(startX, startY);
+    await page.mouse.down();
+    await page.mouse.move(startX + targetX - box.x, startY + targetY - box.y, {
+      steps: 15,
+    });
     await page.mouse.up();
-    await expect(page.locator(".save")).toContainText("Saved locally");
+    await expect
+      .poll(async () =>
+        Number(
+          (await page.locator(".save").innerText()).match(/r(\d+)/)?.[1] || 0,
+        ),
+      )
+      .toBeGreaterThan(before);
+    await expect(node).toBeInViewport({ ratio: 0.9 });
   }
   async function connect(from: number, to: number) {
-    const a = await ns.nth(from).locator(".source").boundingBox(),
-      b = await ns.nth(to).locator(".target").boundingBox();
+    const source = ns.nth(from).locator(".source"),
+      target = ns.nth(to).locator(".target");
+    await expect(source).toBeInViewport();
+    await expect(target).toBeInViewport();
+    const a = await source.boundingBox(),
+      b = await target.boundingBox();
     if (!a || !b) throw Error("Missing handle");
+    const before = await page.locator(".react-flow__edge").count();
     await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
     await page.mouse.down();
     await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 15 });
+    await expect(target).toHaveClass(/\bvalid\b/);
     await page.mouse.up();
+    await expect(page.locator(".react-flow__edge")).toHaveCount(before + 1);
     await expect(page.locator(".save")).toContainText("Saved locally");
   }
   await connect(0, 1);
@@ -257,6 +281,24 @@ try {
   await page.getByRole("button", { name: "Single edge", exact: true }).click();
   await expect(page.locator(".wave-row").locator("b")).toHaveText("0");
   checks.push("created and connected INPUT → NOT → OUTPUT on canvas");
+  const wireStart = await ns.nth(0).locator(".source").boundingBox(),
+    wireEnd = await ns.nth(1).locator(".target").boundingBox();
+  if (!wireStart || !wireEnd) throw Error("Missing wire endpoints");
+  await page.mouse.click(
+    (wireStart.x + wireStart.width / 2 + wireEnd.x + wireEnd.width / 2) / 2,
+    (wireStart.y + wireStart.height / 2 + wireEnd.y + wireEnd.height / 2) / 2,
+  );
+  await expect(page.locator(".react-flow__edge.selected")).toHaveCount(1);
+  await page.keyboard.press("Delete");
+  await expect(page.locator(".react-flow__edge")).toHaveCount(1);
+  await expect(
+    page.getByText("NOT.a: missing input", { exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Undo", exact: true }).click();
+  await expect(page.locator(".react-flow__edge")).toHaveCount(2);
+  await expect(page.getByText("✓ Valid executable netlist")).toBeVisible();
+  checks.push("wire selection, keyboard deletion and validated undo");
+
   await ns.nth(0).click();
   await ns.nth(1).click({ modifiers: ["Shift"] });
   await ns.nth(2).click({ modifiers: ["Shift"] });

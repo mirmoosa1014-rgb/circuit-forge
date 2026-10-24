@@ -14,7 +14,7 @@ The local application and measured evidence are delivered and published at [mirm
 | 6: examples | Eight generated editable examples, including hierarchical ripple adder, exhaustive ALU checks, enabled/reset counter and traffic-light FSM. |
 | 7: export | Deterministic Verilog + generated testbench. Icarus Verilog 13.0 locally cross-checks all eight examples, including 1,024 ALU vectors and 512 ripple-adder vectors. |
 | 8: evidence | Six measured SVG charts, two actual editor screenshots, machine-readable CSV/JSON, raw timing trials, medians/p95, compiler cost and engine evaluation, optimization statistics, two-client localhost acknowledgment latency. |
-| 9: checks | Lint, type checking, 17 engine tests, production build, 13 browser workflows, protocol/restart checks, export cross-checks. Secret scanning passes. Exact statuses are in results/. |
+| 9: checks | Lint, type checking, 17 engine tests, production build, 14 browser workflows, protocol/restart checks, export cross-checks. Secret scanning passes. Exact statuses are in results/. |
 | 10: packaging | Locked dependencies, one-command development and evidence, production origin, clean temporary install/build/test, documentation, MIT license, notices, VS Code tasks and Linux CI workflow. Hosted Linux CI is configured; its current result is linked above. |
 
 ## Commands used

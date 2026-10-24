@@ -5,47 +5,47 @@
     {
       "command": "npm run lint",
       "passed": true,
-      "seconds": 0.624830833
+      "seconds": 0.650278667
     },
     {
       "command": "npm run typecheck",
       "passed": true,
-      "seconds": 0.894488458
+      "seconds": 0.9401995830000001
     },
     {
       "command": "npm run test",
       "passed": true,
-      "seconds": 0.626828291
+      "seconds": 0.637679791
     },
     {
       "command": "npm run build",
       "passed": true,
-      "seconds": 1.81867125
+      "seconds": 1.8851996669999993
     },
     {
       "command": "npm run examples",
       "passed": true,
-      "seconds": 0.17987187500000026
+      "seconds": 0.21856762499999968
     },
     {
       "command": "node --import tsx scripts/protocol-check.ts",
       "passed": true,
-      "seconds": 0.4610930410000001
+      "seconds": 0.46190608299999986
     },
     {
       "command": "node --import tsx scripts/benchmark.ts",
       "passed": true,
-      "seconds": 7.153048582999999
+      "seconds": 7.075671124999999
     },
     {
       "command": "node --import tsx scripts/export-check.ts",
       "passed": true,
-      "seconds": 0.3559929169999996
+      "seconds": 0.3421388329999991
     },
     {
       "command": "node --import tsx scripts/browser-check.ts",
       "passed": true,
-      "seconds": 8.874684791
+      "seconds": 8.783160167000002
     }
   ]
 }

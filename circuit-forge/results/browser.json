@@ -16,6 +16,7 @@
     "two UI clients concurrently edit different components and converge",
     "two UI clients conflicting edit retains an explicit draft",
     "created and connected INPUT → NOT → OUTPUT on canvas",
+    "wire selection, keyboard deletion and validated undo",
     "keyboard multiselection, copy/paste and delete preserve internal wires",
     "JSON download and import"
   ],
